@@ -3,4 +3,5 @@
     <string name="name_title">Name</string>
     <string name="age_title">Age</string>
     <string name="add_title">ADD</string>
+    <string name="delete_title">DELETE</string>
 </resources>
