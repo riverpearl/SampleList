@@ -2,4 +2,5 @@
     <string name="app_name">SampleList</string>
     <string name="name_title">Name</string>
     <string name="age_title">Age</string>
+    <string name="add_title">ADD</string>
 </resources>
