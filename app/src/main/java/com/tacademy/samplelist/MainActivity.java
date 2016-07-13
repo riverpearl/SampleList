@@ -11,11 +11,13 @@ import com.tacademy.samplelist.data.Person;
 import com.tacademy.samplelist.widget.PersonView;
 
 /*
+ *
  * < Compound Widget 만드는 법 >
  * 1. data 클래스 만들기
  * 2. widget 클래스 만들어 layout을 inflate 해주기f
  * 3. 다른 activity에 만들어둔 layout을 CustomView로 추가하기
  * 4. CustomView를 추가한 Activity 클래스에서 data 전달
+ *
  */
 
 public class MainActivity extends AppCompatActivity {

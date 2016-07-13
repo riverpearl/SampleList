@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tacademy.samplelist.R;
@@ -13,7 +14,7 @@ import com.tacademy.samplelist.data.Person;
 /**
  * Created by Tacademy on 2016-07-13.
  */
-public class PersonView extends FrameLayout {
+public class PersonView extends RelativeLayout {
     public PersonView(Context context) {
         super(context);
         init();
@@ -51,6 +52,8 @@ public class PersonView extends FrameLayout {
                     mListener.onImageClick(PersonView.this, person);
             }
         });
+
+        //TypedArray는 꼭 메모리를 반납해줘야 함.
     }
 
     private Person person;
