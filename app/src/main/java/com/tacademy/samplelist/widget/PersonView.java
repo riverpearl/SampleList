@@ -3,6 +3,7 @@ package com.tacademy.samplelist.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Checkable;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -14,7 +15,7 @@ import com.tacademy.samplelist.data.Person;
 /**
  * Created by Tacademy on 2016-07-13.
  */
-public class PersonView extends RelativeLayout {
+public class PersonView extends RelativeLayout implements Checkable {
     public PersonView(Context context) {
         super(context);
         init();
@@ -26,7 +27,7 @@ public class PersonView extends RelativeLayout {
         init();
     }
 
-    private ImageView photoView;
+    private ImageView photoView, checkView, selectView;
     private TextView nameView, ageView;
 
     public interface  OnImageClickListener {
@@ -44,6 +45,8 @@ public class PersonView extends RelativeLayout {
         photoView = (ImageView)findViewById(R.id.image_photo);
         nameView = (TextView)findViewById(R.id.text_name);
         ageView = (TextView)findViewById(R.id.text_age);
+        checkView = (ImageView)findViewById(R.id.image_check);
+        selectView = (ImageView)findViewById(R.id.image_select);
 
         photoView.setOnClickListener(new OnClickListener() {
             @Override
@@ -67,5 +70,36 @@ public class PersonView extends RelativeLayout {
         photoView.setImageDrawable(person.getPhoto());
         nameView.setText(person.getName());
         ageView.setText("" + person.getAge());
+    }
+
+    boolean isChecked;
+
+    @Override
+    public void setChecked(boolean checked) {
+        if (isChecked != checked) {
+            isChecked = checked;
+            drawCheck();
+}
+    }
+
+    public void drawCheck() {
+        if (isChecked) {
+            checkView.setImageResource(android.R.drawable.checkbox_on_background);
+            selectView.setVisibility(ImageView.VISIBLE);
+        }
+        else {
+            checkView.setImageResource(android.R.drawable.checkbox_off_background);
+            selectView.setVisibility((ImageView.GONE));
+        }
+    }
+
+    @Override
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    @Override
+    public void toggle() {
+        setChecked(!isChecked);
     }
 }

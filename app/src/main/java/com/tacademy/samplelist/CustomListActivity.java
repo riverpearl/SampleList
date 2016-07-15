@@ -24,6 +24,7 @@ public class CustomListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_list);
 
         listView = (ListView)findViewById(R.id.listView3);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         //커진 사진을 누르면 안 보이게 한다.
         pictureView = (ImageView)findViewById(R.id.image_picture);
