@@ -1,6 +1,7 @@
 package com.tacademy.samplelist;
 
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import java.util.List;
 public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     List<GroupItem> items = new ArrayList<>();
 
-    public void put(String groupName, String childName) {
+    public void put(String groupName, String childName, float textSize) {
         GroupItem group = null;
         for(GroupItem g : items) {
             if (g.groupName.equals(groupName)) {
@@ -35,15 +36,16 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         if (!TextUtils.isEmpty(childName)) {
             ChildItem child = new ChildItem();
             child.childName = childName;
+            child.textSize = textSize;
             group.children.add(child);
         }
 
         notifyDataSetChanged();
     }
 
-    private static final int VIEW_TYPE_HEADER = 100;
-    private static final int VIEW_TYPE_GROUP = 200;
-    private static final int VIEW_TYPE_CHILD = 10000;
+    public static final int VIEW_TYPE_HEADER = 100;
+    public static final int VIEW_TYPE_GROUP = 200;
+    public static final int VIEW_TYPE_CHILD = 10000;
 
     @Override
     public int getItemViewType(int position) {
@@ -60,18 +62,22 @@ public class GroupAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         throw new IllegalArgumentException("invalid position");
     }
 
-    View headerView = null;
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType) {
             case VIEW_TYPE_HEADER : {
-                if (headerView == null) {
-                    headerView = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_list_item, parent, false);
-                }
-                return new HeaderViewHolder(headerView);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.header_list_item, parent, false);
+                StaggeredGridLayoutManager.LayoutParams params = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setFullSpan(true);
+                view.setLayoutParams(params);
+                HeaderViewHolder hvh = new HeaderViewHolder(view);
+                return hvh;
             }
             case VIEW_TYPE_GROUP : {
                 View view = LayoutInflater.from(parent.getContext()).inflate(android.R.layout.simple_list_item_1, parent, false);
+                StaggeredGridLayoutManager.LayoutParams params = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setFullSpan(true);
+                view.setLayoutParams(params);
                 return new GroupViewHolder(view);
             }
             case VIEW_TYPE_CHILD : {

@@ -5,4 +5,5 @@ package com.tacademy.samplelist.data;
  */
 public class ChildItem {
     public String childName;
+    public float textSize;
 }
