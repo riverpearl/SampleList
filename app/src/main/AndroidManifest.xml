@@ -30,7 +30,10 @@
         <activity
             android:name=".SpinnerActivity"
             android:exported="true" />
-        <activity android:name=".RecyclerActivity" android:exported="true"></activity>
+        <activity
+            android:name=".RecyclerActivity"
+            android:exported="true" />
+        <activity android:name=".RecyclerMultiActivity" android:exported="true"></activity>
     </application>
 
 </manifest>
